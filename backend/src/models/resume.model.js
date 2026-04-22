@@ -1,44 +1,22 @@
 import mongoose from "mongoose";
 
-const resumeSchema = mongoose.Schema(
+const resumeSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
-    content: {
-      type: String,
-      required: true,
-    },
-    summary: {
-      type: String,
-      default: "",
-    },
-    UserNote: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      index: true,
     },
-    isDeleted: {
-      type: Boolean,
-      default: false,
-      index: true,
+    resumeUrl: {
+      type: String,
+      required: true,
     },
-    deletedAt: {
-      //yeh useful hai jab user delete karega toh uska time note karega
-      type: Date,
-      default: null,
+    publicId: {
+      type: String,
+      required: true,
     },
-    isArchived: {
-      type: Boolean,
-      default: false,
-      index: true,
-    },
-    isFavourite: {
-      type: Boolean,
-      default: false,
-      index: true,
+    originalFileName: {
+      type: String,
     },
   },
   { timestamps: true },
@@ -46,4 +24,4 @@ const resumeSchema = mongoose.Schema(
 
 const Resume = mongoose.model("Resume", resumeSchema);
 
-export default Notes;
+export default Resume;
