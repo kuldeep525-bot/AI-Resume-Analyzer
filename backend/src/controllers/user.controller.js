@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
-import User from "../models/user.model.js";
+
 import jwt from "jsonwebtoken";
+import UserAi from "../models/user.model.js";
 
 export const register = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ export const register = async (req, res) => {
         .json({ success: false, message: "Please fill the all the value" });
     }
 
-    const user = await User.findOne({ email });
+    const user = await UserAi.findOne({ email });
 
     if (user) {
       return res
@@ -22,7 +23,7 @@ export const register = async (req, res) => {
 
     const Hashpassword = await bcrypt.hash(password, 10);
 
-    const userData = await User.create({
+    const userData = await UserAi.create({
       name: name,
       email: email,
       password: Hashpassword,
@@ -55,7 +56,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "Please fill the all the field" });
     }
 
-    const user = await User.findOne({ email }).select("+password");
+    const user = await UserAi.findOne({ email }).select("+password");
 
     if (!user) {
       return res
