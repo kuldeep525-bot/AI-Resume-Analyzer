@@ -18,6 +18,38 @@ const resumeSchema = new mongoose.Schema(
     originalFileName: {
       type: String,
     },
+    extractedText: {
+      type: String,
+    },
+    
+    // AI ANALYSIS
+    score: {
+      type: Number,
+    },
+
+    skills: [
+      {
+        type: String,
+      },
+    ],
+
+    strengths: [
+      {
+        type: String,
+      },
+    ],
+
+    weaknesses: [
+      {
+        type: String,
+      },
+    ],
+
+    suggestions: [
+      {
+        type: String,
+      },
+    ],
   },
   { timestamps: true },
 );
